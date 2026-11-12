@@ -1,0 +1,5 @@
+﻿# keep Unix line endings in the repo (consistent builds on Linux hosts)
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.pdf binary

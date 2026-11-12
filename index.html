@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>%VITE_NAME% | %VITE_ROLE%</title>
+    <meta name="description" content="%VITE_NAME%: %VITE_ROLE%, %VITE_LOCATION%. %VITE_TAGLINE%" />
+    <meta name="theme-color" content="#050505" />
+    <script>
+      // pick the theme before first paint: ?theme= link → saved choice → Mr. Robot ("root") by default
+      (function () {
+        var t = new URLSearchParams(location.search).get('theme'); // e.g. ?theme=mrrobot
+        if (t === 'mrrobot') t = 'root';
+        try {
+          if (t === 'light' || t === 'dark' || t === 'root') localStorage.setItem('theme', t);
+          else t = localStorage.getItem('theme');
+        } catch (e) {}
+        if (t !== 'light' && t !== 'dark' && t !== 'root') t = 'root';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-nav" id="site-nav">
+      <a class="logo" href="#top" aria-label="Home">
+        <span class="logo-mark">KK</span>
+        <span class="logo-text" id="logo-name"></span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Main"></nav>
+      <div class="theme-picker" id="theme-picker">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Change theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" /><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" />
+          </svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z" />
+          </svg>
+          <svg class="term" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2.5" y="4" width="19" height="16" rx="1.5" /><path d="m6.5 9 3.5 3-3.5 3M12 15h5" />
+          </svg>
+        </button>
+        <div class="theme-menu" id="theme-menu" role="menu" aria-label="Theme">
+          <button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="light"><span class="sw sw-light"></span>Light</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="dark"><span class="sw sw-dark"></span>Dark</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="root"><span class="sw sw-root"></span>Mr. Robot</button>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost sm" href="world.html">3D World <span aria-hidden="true">↗</span></a>
+        <a class="btn primary sm" id="cv-btn" href="resume.pdf" download>Download CV</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false"><i></i><i></i><i></i></button>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero" id="top">
+        <div class="hero-text">
+          <p class="eyebrow"><span class="dot"></span><span id="hero-status"></span></p>
+          <h1 id="hero-name"></h1>
+          <p class="hero-role" id="hero-role"></p>
+          <p class="hero-tagline" id="hero-tagline"></p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">View my work</a>
+            <a class="btn ghost" href="#contact">Get in touch</a>
+          </div>
+          <ul class="hero-links" id="hero-links"></ul>
+        </div>
+        <div class="hero-3d">
+          <canvas id="crt" aria-label="A 3D retro computer whose screen types out a terminal session: whoami, a port scan, a blocked brute-force attack and a hire-me script"></canvas>
+          <p class="globe-hint">Click the screen to skip ahead</p>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="stats reveal" id="stats" aria-label="Highlights"></section>
+
+      <!-- Live SOC monitor (3D) + 2D log consoles -->
+      <section class="section" id="monitor">
+        <div class="section-head reveal">
+          <p class="kicker">Live SOC monitor</p>
+          <h2 data-text="MONITOR_TITLE">A shift on the blue team</h2>
+          <p class="section-sub" data-text="MONITOR_SUB">Linux and Windows telemetry streaming into a SIEM, the way I triage it every day. The data is simulated. Click a screen to zoom in.</p>
+        </div>
+        <div class="soc-stage reveal">
+          <canvas id="soc-desk" aria-label="3D SOC workstation: a Linux log terminal, a SIEM dashboard and a Windows Event Viewer, all updating live"></canvas>
+          <div class="soc-legend">
+            <span class="lx">Linux · auth.log / syslog / auditd</span>
+            <span class="sm">SIEM · overview</span>
+            <span class="wn">Windows · Security / Sysmon</span>
+          </div>
+          <p class="soc-hint" id="soc-hint">Click a screen to zoom in</p>
+        </div>
+        <div class="consoles">
+          <div class="console linux reveal">
+            <div class="console-bar"><i></i><i></i><i></i><span id="linux-title">tail -F /var/log/auth.log</span></div>
+            <div class="console-body" id="linux-log"></div>
+          </div>
+          <div class="console windows reveal">
+            <div class="console-bar win"><span>Event Viewer · Security · Sysmon · PowerShell</span></div>
+            <div class="console-body" id="win-log"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section" id="about">
+        <div class="section-head reveal">
+          <p class="kicker">01 / About</p>
+          <h2 data-text="ABOUT_TITLE">Defender with an engineer's toolkit</h2>
+        </div>
+        <div class="about-grid">
+          <div class="reveal" id="about-photo"></div>
+          <div class="about-body reveal">
+            <div id="about-text"></div>
+            <dl class="facts" id="facts"></dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section" id="experience">
+        <div class="section-head reveal">
+          <p class="kicker">02 / Experience</p>
+          <h2 data-text="EXPERIENCE_TITLE">Where I've worked and studied</h2>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </section>
+
+      <!-- Projects -->
+      <section class="section" id="projects">
+        <div class="section-head reveal">
+          <p class="kicker">03 / Projects &amp; research</p>
+          <h2 data-text="PROJECTS_TITLE">Selected work</h2>
+        </div>
+        <div class="projects" id="project-grid"></div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section" id="skills">
+        <div class="section-head reveal">
+          <p class="kicker">04 / Skills</p>
+          <h2 data-text="SKILLS_TITLE">Technical toolkit</h2>
+        </div>
+        <div class="skills" id="skill-grid"></div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="section" id="certifications">
+        <div class="section-head reveal">
+          <p class="kicker">05 / Certifications</p>
+          <h2 data-text="CERTS_TITLE">Certifications &amp; competitions</h2>
+        </div>
+        <div class="certs" id="cert-grid"></div>
+      </section>
+
+      <!-- TryHackMe -->
+      <section class="section" id="tryhackme">
+        <div class="thm-card reveal">
+          <div class="thm-text">
+            <p class="kicker">Hands-on practice</p>
+            <h2>Learning in public on <span class="thm-name">TryHackMe</span></h2>
+            <p data-text="THM_TEXT">I train like a SOC analyst every week on TryHackMe: SIEM investigations, incident response, malware analysis and blue-team labs that mirror real alerts.</p>
+            <div class="thm-actions" id="thm-actions"></div>
+          </div>
+          <div class="thm-menu">
+            <div class="thm-menu-head"><span>Today's menu</span><small>Hack &amp; Byte Diner</small></div>
+            <ul id="thm-menu"></ul>
+            <div class="thm-stats" id="thm-stats"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3D world feature -->
+      <section class="section">
+        <a class="world-card reveal" href="world.html">
+          <div class="world-text">
+            <p class="kicker">Interactive</p>
+            <h2 data-text="WORLD_TITLE">Explore my 3D world</h2>
+            <p data-text="WORLD_TEXT">Drive a neon rover around a tiny planet where every landmark is part of this CV. Attacks are blocked by a firewall shield in real time.</p>
+            <span class="btn primary">Launch the 3D world <span aria-hidden="true">→</span></span>
+          </div>
+          <div class="world-img"><img src="world-preview.jpg" alt="Screenshot of the 3D portfolio world: a neon car driving on a cyber planet" loading="lazy" /></div>
+        </a>
+      </section>
+
+      <!-- Contact -->
+      <section class="section contact" id="contact">
+        <div class="contact-card reveal">
+          <div class="swarm-wrap">
+            <canvas id="swarm" aria-label="Particles that morph between a shield, a padlock, a fingerprint and my initials while attacks are blocked"></canvas>
+            <div class="globe-card swarm-card">
+              <span class="live"></span>
+              <div>
+                <small>Threats blocked</small>
+                <b id="blocked-count">0</b>
+              </div>
+              <div class="last">
+                <small>Status</small>
+                <span id="last-target">Perimeter defended</span>
+              </div>
+            </div>
+          </div>
+          <p class="kicker">06 / Contact</p>
+          <h2 data-text="CONTACT_TITLE">Let's work together</h2>
+          <div id="contact-text"></div>
+          <div class="contact-actions" id="contact-actions"></div>
+          <ul class="contact-links" id="contact-links"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p id="footer-text"></p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+
+    <script type="module" src="/src/portfolio/main.js"></script>
+  </body>
+</html>

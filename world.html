@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D World | %VITE_NAME%</title>
+    <meta name="description" content="Interactive 3D portfolio of %VITE_NAME%, %VITE_ROLE%. Drive a rover around a neon cyber planet." />
+    <meta name="theme-color" content="#050505" />
+    <script>
+      // the 3D world uses the Mr. Robot ("root") look by default, unless Light/Dark was picked on the portfolio
+      (function () {
+        var t = new URLSearchParams(location.search).get("theme");
+        if (t === "mrrobot") t = "root";
+        try { if (!t) t = localStorage.getItem("theme"); } catch (e) {}
+        if (t !== "light" && t !== "dark") document.documentElement.dataset.theme = "root";
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- Intro / boot screen -->
+    <div id="intro">
+      <div class="intro-card">
+        <p class="kicker" id="intro-role"></p>
+        <h1 id="intro-name" class="glitch"></h1>
+        <div class="term">
+          <div class="term-bar"><i></i><i></i><i></i><span>blue@soc: ~ (ssh)</span></div>
+          <div id="boot"></div>
+        </div>
+        <div class="controls">
+          <div><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span> drive</div>
+          <div><span><kbd>Shift</kbd></span> boost</div>
+          <div><span><kbd>Space</kbd></span> jump</div>
+          <div><span><kbd>R</kbd></span> reset</div>
+          <div><span><kbd>Drag</kbd></span> look around</div>
+          <div><span><kbd>Scroll</kbd></span> zoom</div>
+        </div>
+        <button id="start-btn" class="btn primary">&gt; start_session</button>
+        <button id="intro-classic" class="btn link">or go back to the portfolio</button>
+      </div>
+    </div>
+
+    <!-- HUD -->
+    <header id="hud">
+      <div class="brand"><strong id="hud-name"></strong><span id="hud-role"></span></div>
+      <button id="menu-btn" aria-label="Menu"><i></i><i></i><i></i></button>
+      <nav id="nav" aria-label="Sections"></nav>
+    </header>
+    <button id="guide" title="Travel to the next section (N)"></button>
+    <div id="hint">WASD drive · Shift boost · Space jump · R reset · drag to look</div>
+
+    <!-- Live SIEM feed -->
+    <section id="siem" aria-hidden="true">
+      <div class="siem-head"><span class="live">● LIVE</span> SIEM // blue team <span class="siem-count">blocked <b id="siem-count">0000</b></span></div>
+      <div id="siem-lines"></div>
+    </section>
+    <div id="alert-banner" role="status"></div>
+
+    <!-- Section panel -->
+    <aside id="panel" aria-live="polite">
+      <button id="panel-close" aria-label="Close">×</button>
+      <p class="kicker" id="panel-kicker"></p>
+      <h2 id="panel-title"></h2>
+      <div id="panel-body"></div>
+      <footer id="panel-nav"></footer>
+    </aside>
+
+    <!-- Radar minimap -->
+    <div id="minimap-wrap">
+      <canvas id="minimap" aria-label="Map: click a section to travel there"></canvas>
+      <span class="mm-cap">MAP · click to travel</span>
+    </div>
+
+    <!-- Touch controls -->
+    <div id="touch">
+      <div id="joy"><div id="joy-knob"></div></div>
+      <div class="touch-btns">
+        <button id="boost-btn">BOOST</button>
+        <button id="jump-btn">JUMP</button>
+      </div>
+    </div>
+
+    <!-- Classic (non-3D) view -->
+    <div id="classic">
+      <button id="classic-close" class="btn primary">Back to 3D</button>
+      <div class="classic-inner" id="classic-inner"></div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
