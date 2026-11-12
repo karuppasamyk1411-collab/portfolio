@@ -234,9 +234,9 @@ body { transition: background-color 0.35s ease, color 0.35s ease; }
 :root[data-theme='root'] .world-card .kicker { color: var(--accent); }
 /* photo: monochrome with a red cast */
 :root[data-theme='root'] .photo-inner { border-radius: 0; border-color: #000; box-shadow: 0 0 0 1px var(--accent), 0 0 40px rgba(31, 139, 255, 0.2); }
-:root[data-theme='root'] .photo-inner img { filter: grayscale(0.35) contrast(1.05) brightness(1.12); }
+:root[data-theme='root'] .photo-inner img { filter: grayscale(1) contrast(1.15) brightness(0.95); }
 :root[data-theme='root'] .photo-inner::before {
-  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: soft-light; background: linear-gradient(180deg, rgba(31, 139, 255, 0.28), rgba(31, 139, 255, 0.12));
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: multiply; background: linear-gradient(180deg, rgba(31, 139, 255, 0.35), rgba(31, 139, 255, 0.15));
 }
 :root[data-theme='root'] .photo-tag { border-radius: 0; font-family: var(--mono); }
 :root[data-theme='root'] .photo-tag b { color: var(--accent); }
@@ -478,7 +478,7 @@ main { max-width: calc(var(--max) + 48px); margin: 0 auto; padding: 0 24px; }
 .photo-card.tilting .photo-inner { transition: transform 0.1s; }
 .photo-inner img { width: 100%; height: 100%; object-fit: cover; }
 .photo-inner .glare { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light; background: radial-gradient(circle at var(--gx) var(--gy), rgba(255, 255, 255, 0.5), transparent 50%); }
-.photo-inner::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 72%, rgba(13, 21, 48, 0.35)); }
+.photo-inner::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 60%, rgba(13, 21, 48, 0.55)); }
 .photo-tag {
   position: absolute; left: 16px; bottom: 16px; z-index: 1; transform: translateZ(40px); color: #fff;
   font-size: 14px; background: rgba(13, 21, 48, 0.6); backdrop-filter: blur(6px);
