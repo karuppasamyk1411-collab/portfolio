@@ -28,7 +28,6 @@ const email = env('EMAIL');
 const linkedin = env('LINKEDIN_URL');
 const github = env('GITHUB_URL');
 const thmUser = env('TRYHACKME_USER');
-const resumeUrl = env('RESUME_URL');
 const urlTail = (u) => u.replace(/^https?:\/\/(www\.)?[^/]+\//, '').replace(/\/$/, '');
 
 export const profile = {
@@ -45,7 +44,6 @@ export const profile = {
     linkedin && { label: 'LinkedIn', url: linkedin, text: urlTail(linkedin) },
     github && { label: 'GitHub', url: github, text: urlTail(github) },
     thmUser && { label: 'TryHackMe', url: `https://tryhackme.com/p/${thmUser}`, text: `p/${thmUser}` },
-    resumeUrl && { label: 'Résumé', url: resumeUrl, text: 'Download PDF' },
   ].filter(Boolean),
 };
 

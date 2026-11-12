@@ -101,8 +101,6 @@ SECTIONS.forEach(([id]) => navObserver.observe(document.getElementById(id)));
 
 /* ── hero ── */
 $('#hero-status').textContent = profile.openTo;
-const resume = linkBy('Résumé');
-if (resume) $('#cv-btn').href = resume.url;
 $('#hero-name').textContent = profile.name;
 $('#hero-name').dataset.text = profile.name; // used by the Root theme's glitch layers
 $('#hero-name').dataset.prompt = `root@${$('.logo-mark').textContent.toLowerCase()}:~# whoami`;
