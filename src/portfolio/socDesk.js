@@ -284,7 +284,7 @@ export function createSocDesk(canvas, { host = 'soc-sensor-01', domain = 'CORP',
   const THEMES = {
     light: { desk: '#eef2fb', sky: '#ffffff', ground: '#c7d2fe', hemi: 2.0, key: 1.6 },
     dark: { desk: '#1a2547', sky: '#8ea2ff', ground: '#0a1230', hemi: 0.9, key: 0.9 },
-    root: { desk: '#141414', sky: '#ff8a96', ground: '#050505', hemi: 0.7, key: 0.6, strip: '#ff1f3d' },
+    root: { desk: '#141414', sky: '#8ab8ff', ground: '#050505', hemi: 0.7, key: 0.6, strip: '#1f8bff' },
   };
   const applyRoom = (t) => {
     const p = THEMES[t] || THEMES.light;

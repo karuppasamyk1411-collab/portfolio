@@ -5,9 +5,9 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 // Hover the screen → it glitches.  Click → skip ahead to the next command.
 
 const PALETTES = {
-  root: { shell: '#262626', trim: '#111111', keys: '#1c1c1c', keyTop: '#262626', bg: '#0a0001', text: '#ff3049', bright: '#ffffff', dim: '#8a1a28', ok: '#ffffff', glow: '#ff1f3d' },
-  dark: { shell: '#1d2440', trim: '#121831', keys: '#1a2140', keyTop: '#283158', bg: '#020a14', text: '#22d3ee', bright: '#e6f6ff', dim: '#1b6b80', ok: '#3dff7a', glow: '#22d3ee' },
-  light: { shell: '#e8dfc8', trim: '#cdbf9f', keys: '#efe8d6', keyTop: '#fbf7ec', bg: '#031006', text: '#39ff7a', bright: '#d8ffe4', dim: '#1d7a3c', ok: '#ffffff', glow: '#22c55e' },
+  root: { shell: '#262626', trim: '#111111', keys: '#1c1c1c', keyTop: '#262626', bg: '#00040c', text: '#3d9bff', bright: '#ffffff', dim: '#3f6a99', ok: '#ffffff', glow: '#1f8bff', alert: '#ff3049' },
+  dark: { shell: '#1d2440', trim: '#121831', keys: '#1a2140', keyTop: '#283158', bg: '#020a14', text: '#22d3ee', bright: '#e6f6ff', dim: '#1b6b80', ok: '#3dff7a', glow: '#22d3ee', alert: '#ff5c7a' },
+  light: { shell: '#e8dfc8', trim: '#cdbf9f', keys: '#efe8d6', keyTop: '#fbf7ec', bg: '#031006', text: '#39ff7a', bright: '#d8ffe4', dim: '#1d7a3c', ok: '#ffffff', glow: '#22c55e', alert: '#ff6b6b' },
 };
 const themeNow = () => (PALETTES[document.documentElement.dataset.theme] ? document.documentElement.dataset.theme : 'root');
 
@@ -40,7 +40,7 @@ export function createCrt(canvas, { prompt = 'root@kk:~# ', script = [] } = {}) 
   key.castShadow = true;
   key.shadow.mapSize.set(1024, 1024);
   Object.assign(key.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4 });
-  const screenLight = new THREE.PointLight('#ff1f3d', 6, 7, 1.6); // glow spilling from the screen
+  const screenLight = new THREE.PointLight('#1f8bff', 6, 7, 1.6); // glow spilling from the screen
   screenLight.position.set(0, 0.2, 1.6);
   scene.add(hemi, key, screenLight);
 
@@ -233,7 +233,7 @@ export function createCrt(canvas, { prompt = 'root@kk:~# ', script = [] } = {}) 
         ctx.fillStyle = P.bright;
         ctx.fillText(r.text.slice(prompt.length), 44 + ctx.measureText(prompt).width, y);
       } else {
-        ctx.fillStyle = r.kind === 'ok' ? P.ok : r.kind === 'alert' ? P.text : r.kind === 'dim' ? P.dim : P.bright;
+        ctx.fillStyle = r.kind === 'ok' ? P.ok : r.kind === 'alert' ? P.alert : r.kind === 'dim' ? P.dim : P.bright;
         ctx.fillText(r.text, 44, y);
       }
       ctx.shadowBlur = 0;

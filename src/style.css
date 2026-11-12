@@ -479,10 +479,10 @@ body.playing #hint.fade { opacity: 0; }
   --bg: #050505;
   --panel: rgba(10, 10, 10, 0.86);
   --panel-solid: rgba(8, 8, 8, 0.97);
-  --line: rgba(255, 31, 61, 0.4);
+  --line: rgba(31, 139, 255, 0.4);
   --text: #ececec;
   --muted: #a3a3a3;
-  --cyan: #ff1f3d;
+  --cyan: #1f8bff;
   --magenta: #ffffff;
   --blue: #ffffff;
 }
@@ -491,10 +491,10 @@ body.playing #hint.fade { opacity: 0; }
 :root[data-theme='root'] #nav button,
 :root[data-theme='root'] #guide,
 :root[data-theme='root'] .btn { border-radius: 0; }
-:root[data-theme='root'] #nav button.active { background: #ff1f3d; color: #000; }
+:root[data-theme='root'] #nav button.active { background: #1f8bff; color: #000; }
 :root[data-theme='root'] #nav button.active .num { color: #000; }
 :root[data-theme='root'] #panel h2,
 :root[data-theme='root'] #nav button { font-family: var(--mono); text-transform: lowercase; }
-:root[data-theme='root'] .brand strong { text-shadow: 0 0 12px #ff1f3d; }
-:root[data-theme='root'] #panel::before { background: linear-gradient(90deg, #ff1f3d, #ffffff); }
+:root[data-theme='root'] .brand strong { text-shadow: 0 0 12px #1f8bff; }
+:root[data-theme='root'] #panel::before { background: linear-gradient(90deg, #1f8bff, #ffffff); }
 :root[data-theme='root'] .glitch::after { color: #ffffff; }

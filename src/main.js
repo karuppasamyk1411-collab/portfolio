@@ -70,7 +70,7 @@ async function main() {
   skyCanvas.height = 512;
   const sctx = skyCanvas.getContext('2d');
   const sg = sctx.createLinearGradient(0, 0, 0, 512);
-  const stops = ROOT ? ['#000000', '#0c0002', '#24000a', '#4a0012'] : ['#0b1a4a', '#1f3a8f', '#3d3fb0', '#6a3fb3'];
+  const stops = ROOT ? ['#000000', '#00040c', '#00122b', '#00265a'] : ['#0b1a4a', '#1f3a8f', '#3d3fb0', '#6a3fb3'];
   [0, 0.45, 0.75, 1].forEach((p, i) => sg.addColorStop(p, stops[i]));
   sctx.fillStyle = sg;
   sctx.fillRect(0, 0, 4, 512);
@@ -81,7 +81,7 @@ async function main() {
   const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.1, 1200);
   camera.position.set(0, 34, 72);
 
-  scene.add(ROOT ? new THREE.HemisphereLight('#ffc2c9', '#1a0005', 1.25) : new THREE.HemisphereLight('#b4c2ff', '#3a2a6a', 1.6));
+  scene.add(ROOT ? new THREE.HemisphereLight('#c2dcff', '#00051a', 1.25) : new THREE.HemisphereLight('#b4c2ff', '#3a2a6a', 1.6));
   const sun = new THREE.DirectionalLight('#e6ecff', 2.6);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
@@ -126,8 +126,8 @@ async function main() {
   scatterProps(scene, [...landmarks.clearings, ...roads.samples], obstacles);
   const sky = createSky(scene);
   if (ROOT) {
-    planet.setColors('#ff2a45', '#ffffff');
-    sky.setColors({ inner: '#ff1f3d', outer: '#5a0010', rings: ['#ff1f3d', '#ffffff'] });
+    planet.setColors('#3d9bff', '#ffffff');
+    sky.setColors({ inner: '#1f8bff', outer: '#00285a', rings: ['#1f8bff', '#ffffff'] });
   }
   const orbs = createOrbs(scene, obstacles);
   const rover = createRover(scene);

@@ -7,7 +7,7 @@ import * as THREE from 'three';
 const THEME = {
   light: { a: '#0891b2', b: '#6d28d9', hot: '#e11d48', ring: '#0891b2', blending: THREE.NormalBlending, opacity: 0.95, size: 1.25 },
   dark: { a: '#22d3ee', b: '#a78bfa', hot: '#ff3d5a', ring: '#22d3ee', blending: THREE.AdditiveBlending, opacity: 1.0, size: 1.4 },
-  root: { a: '#ff1f3d', b: '#f2f2f2', hot: '#ffffff', ring: '#ff1f3d', blending: THREE.AdditiveBlending, opacity: 1.0, size: 1.35 },
+  root: { a: '#1f8bff', b: '#f2f2f2', hot: '#ff1f3d', ring: '#1f8bff', blending: THREE.AdditiveBlending, opacity: 1.0, size: 1.35 },
 };
 const themeNow = () => (THEME[document.documentElement.dataset.theme] ? document.documentElement.dataset.theme : 'light');
 
