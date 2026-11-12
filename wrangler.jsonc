@@ -1,11 +1,14 @@
 // Cloudflare deploy config: serves the Vite build (dist/) as a static site.
 // Used by the "Deploy command": npx wrangler deploy
 {
-  // must match the project/Worker name you chose in the Cloudflare dashboard
-  "name": "karuppasamy",
+  // must match the Worker/project name in the Cloudflare dashboard
+  "name": "portfolio",
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
-  }
+  },
+  // keep the free *.workers.dev address; no extra preview links for other branches
+  "workers_dev": true,
+  "preview_urls": false
 }
