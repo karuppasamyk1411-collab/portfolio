@@ -9,6 +9,7 @@ document.querySelectorAll('[data-text]').forEach((el) => {
 import { createParticleHero } from './particles.js';
 import { createCrt } from './crt.js';
 import { createSocDesk } from './socDesk.js';
+import { initWorldTour } from './tour.js';
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -347,3 +348,9 @@ if (location.hash.length > 1) {
   const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
   if (target) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
 }
+
+/* ── guided tour: point first-time visitors at the 3D World button ── */
+initWorldTour({
+  title: text('TOUR_TITLE'),
+  body: text('TOUR_TEXT'),
+});
