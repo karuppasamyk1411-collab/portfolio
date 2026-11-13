@@ -65,14 +65,20 @@ npm run preview  # serve the build
 
 ## Deploy
 
-The build bakes the `.env` values and the files in `public/` into `dist/`. Because those files are not in the repo,
-**a build running on a CI server or on Cloudflare/Netlify/Vercel from this repo won't have them**. Choose one of these:
+The build bakes the `.env` values and the files in `public/` into `dist/`. Those files are not in the repo,
+so **deploy from your own machine**, where they exist:
 
-1. **Build locally and upload** (simplest). Run `npm run build`, then `npx wrangler deploy` (Cloudflare, uses `wrangler.jsonc`),
-   or upload `dist/` to Netlify, Vercel or GitHub Pages.
-2. **Build on the host from git.** Add every `VITE_*` key from your `.env` as a build environment variable in the host's
-   dashboard (Vite reads `VITE_*` variables from the environment as well as from `.env`). Then make your photos available
-   to the build some other way, e.g. a private repo or storage bucket, because the images aren't in this repo.
+```bash
+npm run deploy   # = vite build + npx wrangler deploy (Cloudflare, uses wrangler.jsonc)
+```
+
+The first time, `wrangler` opens a browser to log in to Cloudflare. For other hosts, run `npm run build` and upload `dist/`
+to Netlify, Vercel or GitHub Pages.
+
+> **Safety guard:** `npm run build` stops with an error when there is no `.env` (`vite.config.js`). So an automatic
+> build from this public repo (Cloudflare/Netlify Git integration, CI) fails instead of publishing a blank site.
+> If you want builds from git anyway, add every `VITE_*` key from your `.env` as a build environment variable in the host's
+> dashboard (Vite reads `VITE_*` variables from the environment too) and supply the images some other way.
 
 ## Links
 
