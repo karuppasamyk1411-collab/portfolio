@@ -1,3 +1,10 @@
 node_modules
 dist
 .DS_Store
+
+# Personal content: kept local only, never committed (see README → "Make it yours")
+.env
+.env.*
+!.env.example
+public/me.jpg
+public/og.jpg

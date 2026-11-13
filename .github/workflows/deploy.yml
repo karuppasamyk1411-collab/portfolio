@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
 
-# Only needed if you host on GitHub Pages (requires a PUBLIC repo on the free plan).
-# The site is hosted on Cloudflare Pages from a private repo, so this runs only when started by hand.
+# Only needed if you host on GitHub Pages.
+# The live site is hosted on Cloudflare, so this runs only when started by hand.
+# .env and the photos are not in the repo, so add the VITE_* keys as repository variables/secrets first (see README).
 on:
   workflow_dispatch:
 
